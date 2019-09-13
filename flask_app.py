@@ -41,12 +41,19 @@ app.config["DEBUG"] = True
 @cross_origin()
 def searchStockx():
     if request.method == 'POST':
-        searchText = request.data
-        print(searchText)
-        searchRes = jsonify(stockx.search(searchText))
-        print(searchRes)
-        return searchRes
-    return jsonify('GET instead')
+
+        search = request.form['search']
+        searchResult = stockx.search(search)
+
+        return jsonify(searchResult)
+        # return response.headers['Access-Control-Allow-Origin']
+
+        # searchText = request.get.text
+        # return jsonify(searchText)
+        # searchRes = jsonify(stockx.search(searchText))
+        # print(searchRes)
+        # return searchRes
+    return jsonify([])
 
 # @app.route("/", methods=["GET"])
 # @cross_origin()
